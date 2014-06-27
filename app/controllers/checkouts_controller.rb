@@ -30,15 +30,31 @@ class CheckoutsController < ApplicationController
 	  @charge = Conekta::Charge.create({
 	    amount: params[:chargeInCentsOxxo],
 	    currency: "MXN",
-	    description: "Pizza Delivery",
+	    description: "Compra en tienda breaking bad",
 	    reference_id: "id_interno_de_orden",
 	    cash: {
 	      "type"=> "oxxo",
 	      "expires_at"=> "2015-03-04"
 	    }
 	  })
+   	charge_n = Charge.new(id: @charge.id,
+    	amount:  @charge.amount,
+	    livemode: @charge.livemode,
+	    created_at: @charge.created_at,
+	    status: @charge.status,
+	    currency: @charge.currency,
+	    description: @charge.description,
+	    reference_id: @charge.reference_id,
+	    failure_code: @charge.failure_code,
+	    failure_message: @charge.failure_message
+		)
+		if charge_n.save
+			render 'checkouts/charge'	
+		else
+			respond_to raise
+		end
 	  #redirect_to @charge.payment_method.barcode_url
-	  render 'checkouts/charge'
+	  
 	rescue Conekta::ValidationError => e
 	  puts e.message 
 	#alguno de los parámetros fueron inválidos

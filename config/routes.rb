@@ -1,4 +1,6 @@
 Cpmx::Application.routes.draw do
+  resources :charges
+
   get 'checkouts/index'
   get 'checkouts/charge'
   get 'oxxo', :to => 'checkouts#oxxo'
