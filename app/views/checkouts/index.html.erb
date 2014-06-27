@@ -1,37 +1,97 @@
-<h1>Tokenizar Tarjeta y Generar Cargo</h1>
-<%= form_tag('/checkouts/charge',id:'card-form') do %>
-  <span class="card-errors"></span>
-  <div class="form-row">
-    <label>
-      <span>Cargo en Centavos</span>
-      <input type="text" size="10" name="chargeInCents"/>
-    </label>
+<div class="container">
+  <h1>Tienda Breaking Bad</h1>
+  <div class="row">
+    <div class="col-xs-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">Taza Breaking Bad <span class="price">100000</span></div>
+        <div class="panel-body">
+          <%= image_tag "http://mla-s1-p.mlstatic.com/breaking-bad-better-call-saul-taza-diseno-exclusivo-6621-MLA5085685705_092013-F.jpg", size: "100x100" %>
+          <button  class="btn btn-primary btn-lg product2store">
+            <span class="glyphicon glyphicon-plus "></span> Store
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">Playera Breaking Bad <span class="price">50000</span></div>
+        <div class="panel-body">
+          <%= image_tag "http://www.doshik.com/tienda/496-thickbox_default/playera-gta-breaking-bad.jpg", size: "100x100" %>
+          <button type="button" class="btn btn-primary btn-lg product2store">
+            <span class="glyphicon glyphicon-plus"></span> Store
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">100 Gramos <span class="price">1000000</span></div>
+        <div class="panel-body">
+          <%= image_tag "http://img2.wikia.nocookie.net/__cb20130722044536/breakingbad/images/4/43/Bluemeth.png", size: "100x100" %>
+          <button type="button" class="btn btn-primary btn-lg product2store">
+            <span class="glyphicon glyphicon-plus"></span> Store
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="form-row">
-    <label>
-      <span>Nombre del tarjetahabiente</span>
-      <input type="text" size="20" data-conekta="card[name]"/>
-    </label>
+  <div class="row">
+    <div class="col-xs-6">
+      <h1>Tokenizar Tarjeta y Generar Cargo</h1>
+      <%= form_tag('/checkouts/charge',id:'card-form') do %>
+        <span class="card-errors"></span>
+        <div class="form-row">
+          <label>
+            <span>Cargo en Centavos</span>
+            <input type="text" size="10" name="chargeInCents" readonly="true"/>
+          </label>
+        </div>
+        <div class="form-row">
+          <label>
+            <span>Nombre del tarjetahabiente</span>
+            <input type="text" size="20" data-conekta="card[name]"/>
+          </label>
+        </div>
+        <div class="form-row">
+          <label>
+            <span>Número de tarjeta de crédito</span>
+            <input type="text" size="20" data-conekta="card[number]" value="4242424242424242" readonly="true"/>
+          </label>
+        </div>
+        <div class="form-row">
+          <label>
+            <span>CVC</span>
+            <input type="text" size="4" data-conekta="card[cvc]"/>
+          </label>
+        </div>
+        <div class="form-row">
+          <label>
+            <span>Fecha de expiración (MM/AAAA)</span>
+            <input type="text" size="2" data-conekta="card[exp_month]"/>
+          </label>
+          <span>/</span>
+          <input type="text" size="4" data-conekta="card[exp_year]"/>
+        </div>
+        <button type="submit" class="btn btn-success">
+          <%=image_tag "https://s3.amazonaws.com/r-temp/brand_symbol.gif"%>
+          Pagar</button>
+      <% end%>
+    </div>
+    <div class="col-xs-6">
+      <h1>Tokenizar Tarjeta y Generar Cargo en el OXXO</h1>
+      <%= form_tag('/checkouts/charge/oxxo',id:'card-form-oxxo') do %>
+        <span class="card-errors"></span>
+        <div class="form-row">
+          <label>
+            <span>Cargo en Centavos</span>
+            <input type="text" size="10" name="chargeInCentsOxxo" readonly="true"/>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-success">
+          <%=image_tag "https://s3.amazonaws.com/r-temp/brand_symbol.gif"%>
+          Pagar
+        </button>
+      <% end%>
+    </div>
   </div>
-  <div class="form-row">
-    <label>
-      <span>Número de tarjeta de crédito</span>
-      <input type="text" size="20" data-conekta="card[number]"/>
-    </label>
-  </div>
-  <div class="form-row">
-    <label>
-      <span>CVC</span>
-      <input type="text" size="4" data-conekta="card[cvc]"/>
-    </label>
-  </div>
-  <div class="form-row">
-    <label>
-      <span>Fecha de expiración (MM/AAAA)</span>
-      <input type="text" size="2" data-conekta="card[exp_month]"/>
-    </label>
-    <span>/</span>
-    <input type="text" size="4" data-conekta="card[exp_year]"/>
-  </div>
-  <button type="submit">Suscribirse ahora!</button>
-<% end%>
+</div>
